@@ -35,9 +35,7 @@ class Genre
   end
 
   def self.create(name)
-    Genre.new(name).tap do |new_genre|
-    new_genre.save
-  end
+    Genre.new(name).tap{|new_genre|new_genre.save}
   end
 
   def songs

@@ -56,9 +56,10 @@ end
   end
 
   def self.new_from_filename(filename)
-   song_name = filename.split(' - ')[1]
-   artist_name = filename.split(' - ')[0]
-   genre_name = filename.split(' - ')[2].split('.')[0]
+    parsed_name = filename.split(' - ')
+   song_name = parsed_name[1]
+   artist_name = parsed_name[0]
+   genre_name = parsed_name[2].gsub(".mp3","")
    Song.find_or_create_by_name(song_name).tap do |song|
    song.artist = Artist.find_or_create_by_name(artist_name)
    song.genre = Genre.find_or_create_by_name(genre_name)
